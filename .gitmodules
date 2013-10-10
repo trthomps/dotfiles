@@ -1,3 +1,12 @@
-[submodule "#oh-my-zsh"]
+[submodule "oh-my-zsh"]
 	path = "#oh-my-zsh"
 	url = https://github.com/robbyrussell/oh-my-zsh.git
+[submodule "vim/bundle/nerdtree"]
+	path = "#vim/bundle/nerdtree"
+	url = https://github.com/scrooloose/nerdtree.git
+[submodule "vim/bundle/vim-colors-solarized"]
+	path = "#vim/bundle/vim-colors-solarized"
+	url = git://github.com/altercation/vim-colors-solarized.git
+[submodule "vim/bundle/vim-sensible"]
+	path = "#vim/bundle/vim-sensible"
+	url = git://github.com/tpope/vim-sensible.git

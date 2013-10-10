@@ -21,7 +21,7 @@ function dfinstall() {
                 dfile=".${file[2,${#file}]}"
             fi
             if [ ! -L "$HOME/$dfile" ]; then
-                echo "### Installing $HOME/$dfile --> $DF_DIR/$file"
+                echo "Installing $HOME/$dfile --> $DF_DIR/$file"
                 ln -sfn "$DF_DIR/$file" "$HOME/$dfile"
             fi
         fi

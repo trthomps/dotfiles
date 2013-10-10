@@ -14,10 +14,10 @@ plugins=(git git-extras github python git_remote_branch pip urltools vi-mode web
 case "$(uname)" in
     Linux)
         if [ -x "$(which lsb_release)" ]; then
-            $DIST=$(lsb_release -is)
+            DIST="$(lsb_release -is)"
         else
             echo "WARNING: You don't have lsb-release installed, can't determin distribution"
-            $DIST="unknown"
+            DIST="unknown"
         fi
 
         case "$DIST" in
@@ -29,7 +29,7 @@ case "$(uname)" in
                 plugins+=(archlinux systemd)
             ;;
 
-            rhel)
+            RedHatEnterpriseServer)
                 plugins+=(yum)
             ;;
 
