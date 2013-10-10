@@ -1,42 +1,51 @@
 #!/bin/zsh
 [[ -z "$DF_DIR" ]] && DF_DIR=$HOME/.dotfiles
+[[ -z "$DF_TARGET" ]] && DF_TARGET=$HOME
 [[ -z "$DF_UPCHECKTIME" ]] && DF_UPCHECKTIME=604800 # 1 week default
-DF_BLACKLIST+=("README.md" "dotfiles.sh")
+DF_BASE=$DF_DIR/base
 
 function dfinstall() {
-    [[ -z "$1" ]] && SDIR=$DF_DIR || SDIR=$1
+    local SDIR=$1
+    local LIST=$2
 
-    for file in `ls $SDIR`; do
-        # Check if file is black listed
-        bl=false
-        for e in "${DF_BLACKLIST[@]}"; do 
-            if [[ "$file" = "$e" ]]; then 
-                bl=true; 
-            fi
-        done
-        [[ "$bl" == "true" ]] && continue
+    for file in `ls -a $DF_BASE$SDIR`; do
+        # Ignore . and ..
+        [[ "$file" = "." || "$file" = ".." ]] && continue
 
-        # this is so we can handle .config, .local, and bin
-        if [[ "${file[0,1]}" == "$" ]]; then
-            dfinstall $SDIR/$file
+        # File is ignored, starts with !
+        [[ "${file[0,1]}" = "!" ]] && continue
+
+        # File is recursive
+        if [[ "${file[0,1]}" = "#" ]]; then
+            dfinstall $SDIR/$file $LIST
             continue
         fi
+        
+        local TARGET=$DF_BASE$SDIR/$file
+        local LINKDIR=$DF_TARGET${SDIR:gs/#//}
+        local LINK=$LINKDIR/$file
+        
+        if [[ ! -d "$LINKDIR" ]]; then
+            echo "Creating $LINKDIR"
+            rm -rf $LINKDIR
+            mkdir -p $LINKDIR
+        fi
 
-        if [[ "$bl" == "false" ]]; then
-            dfile=$file
-
-            # replace # with .
-            [[ "${file[0,1]}" = "#" ]] && dfile=".${file[2,${#file}]}"
-            [[ "${SDIR[0,1]}" = "#" ]] && SDIR=".${SDIR[2,${#SDIR}]}"
-
-            # See if we're linking from .dotfiles or from .dotfiles/$SDIR
-            [[ "$SDIR" = "$DF_DIR" ]] && base=$HOME || base=$HOME/$SDIR
-            if [ ! -L "$base/$dfile" ]; then
-                echo "Installing $base/$dfile --> $SDIR/$file"
-                ln -sfn "$SDIR/$file" "$base/$dfile"
+        if [[ "$LIST" = "true" ]]; then
+            echo "$LINK --> $TARGET"
+        else
+            if [[ ! -L "$LINK" ]]; then
+                echo "Installing $LINK --> $TARGET"
+                rm -rf $LINK
+                ln -sfn $TARGET $LINK
             fi
         fi
     done
+}
+
+function dflist() {
+    echo "### List of installed"
+    dfinstall "" "true"
 }
 
 function dfup() {

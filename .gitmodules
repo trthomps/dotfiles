@@ -1,21 +1,21 @@
 [submodule "oh-my-zsh"]
-	path = "#oh-my-zsh"
+	path = "base/.oh-my-zsh"
 	url = https://github.com/robbyrussell/oh-my-zsh.git
 [submodule "vim/bundle/nerdtree"]
-	path = "#vim/bundle/nerdtree"
+	path = "base/.vim/bundle/nerdtree"
 	url = https://github.com/scrooloose/nerdtree.git
 [submodule "vim/bundle/vim-colors-solarized"]
-	path = "#vim/bundle/vim-colors-solarized"
+	path = "base/.vim/bundle/vim-colors-solarized"
 	url = git://github.com/altercation/vim-colors-solarized.git
 [submodule "vim/bundle/vim-sensible"]
-	path = "#vim/bundle/vim-sensible"
+	path = "base/.vim/bundle/vim-sensible"
 	url = git://github.com/tpope/vim-sensible.git
-[submodule "#solarized"]
-	path = "#solarized"
+[submodule "solarized"]
+	path = "base/.solarized"
 	url = https://github.com/altercation/solarized.git
-[submodule "#vim/bundle/vim-solarized-powerline"]
-	path = "#vim/bundle/vim-solarized-powerline"
+[submodule "vim/bundle/vim-solarized-powerline"]
+	path = "base/.vim/bundle/vim-solarized-powerline"
 	url = https://github.com/stephenmckinney/vim-solarized-powerline.git
-[submodule "#vim/bundle/ctrlp"]
-	path = "#vim/bundle/ctrlp"
+[submodule "vim/bundle/ctrlp"]
+	path = "base/.vim/bundle/ctrlp"
 	url = https://github.com/kien/ctrlp.vim.git
