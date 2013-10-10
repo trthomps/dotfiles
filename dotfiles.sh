@@ -4,7 +4,9 @@
 DF_BLACKLIST+=("README.md" "dotfiles.sh")
 
 function dfinstall() {
-    for file in `ls $DF_DIR`; do
+    [[ -z "$1" ]] && SDIR=$DF_DIR || SDIR=$1
+
+    for file in `ls $SDIR`; do
         # Check if file is black listed
         bl=false
         for e in "${DF_BLACKLIST[@]}"; do 
@@ -12,17 +14,26 @@ function dfinstall() {
                 bl=true; 
             fi
         done
+        [[ "$bl" == "true" ]] && continue
+
+        # this is so we can handle .config, .local, and bin
+        if [[ "${file[0,1]}" == "$" ]]; then
+            dfinstall $SDIR/$file
+            continue
+        fi
 
         if [[ "$bl" == "false" ]]; then
             dfile=$file
 
             # replace # with .
-            if [[ "${file[0,1]}" = "#" ]]; then
-                dfile=".${file[2,${#file}]}"
-            fi
-            if [ ! -L "$HOME/$dfile" ]; then
-                echo "Installing $HOME/$dfile --> $DF_DIR/$file"
-                ln -sfn "$DF_DIR/$file" "$HOME/$dfile"
+            [[ "${file[0,1]}" = "#" ]] && dfile=".${file[2,${#file}]}"
+            [[ "${SDIR[0,1]}" = "#" ]] && SDIR=".${SDIR[2,${#SDIR}]}"
+
+            # See if we're linking from .dotfiles or from .dotfiles/$SDIR
+            [[ "$SDIR" = "$DF_DIR" ]] && base=$HOME || base=$HOME/$SDIR
+            if [ ! -L "$base/$dfile" ]; then
+                echo "Installing $base/$dfile --> $SDIR/$file"
+                ln -sfn "$SDIR/$file" "$base/$dfile"
             fi
         fi
     done
@@ -110,5 +121,7 @@ fi
 ((lastup = `date +%s` - lastup))
 
 if [ $lastup -ge $DF_UPCHECKTIME ]; then
-    dfup
+    if [ "$DF_NOUPDATE" != "true" ]; then
+        dfup
+    fi
 fi

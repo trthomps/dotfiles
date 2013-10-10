@@ -12,7 +12,6 @@ set smartcase
 set ruler
 set mouse=a
 set hidden
-set colorcolumn=80
 set backspace=2
 set showcmd
 
@@ -36,5 +35,11 @@ let g:Powerline_colorscheme='solarized256_dark'
 
 let mapleader = ","
 map <Leader>n :NERDTreeToggle<CR>
+
+if exists('+colorcolumn')
+    set colorcolumn=80
+else
+    au BufWinEnter * let w:m2=matchadd('ErrorMsg', '\%>80v.\+', -1)
+endif
 
 set term=screen-256color
