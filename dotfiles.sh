@@ -99,7 +99,7 @@ function dfup() {
     echo "### done"
     
     echo `date +%s` > $DF_DIR/.lastup
-    cd -
+    cd $OLDPWD
 }
 
 if [ -f "$DF_DIR/.lastup" ]; then
