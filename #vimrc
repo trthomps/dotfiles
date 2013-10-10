@@ -31,6 +31,8 @@ let g:solarized_termcolors = 256
 let g:solarized_visibility = "high"
 let g:solarized_contrast = "high"
 colorscheme solarized
+let g:Powerline_theme='short'
+let g:Powerline_colorscheme='solarized256_dark'
 
 let mapleader = ","
 map <Leader>n :NERDTreeToggle<CR>
