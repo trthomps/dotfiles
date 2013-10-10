@@ -29,12 +29,15 @@ function dfinstall() {
 }
 
 function dfup() {
-    echo "### Updating dotfiles..."
     cd $DF_DIR
-    git pull
-    dfinstall
+    echo "### Checking for dotfile updates..."
+        git pull
+        dfinstall
+    echo "### done"
+    echo "### Checking for submodule updates..."
+        git submodule update --init --recursive
+    echo "### done"
     echo $(date +%s) > $DF_DIR/.lastup
-    echo "### done!"
 }
 
 if [ -f "$DF_DIR/.lastup" ]; then
