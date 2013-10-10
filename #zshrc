@@ -67,16 +67,5 @@ esac
 source $ZSH/oh-my-zsh.sh
 source $DF_DIR/dotfiles.sh
 
-# This should be moved to ~/bin
-function jc {
-        host=$1
-        port=$2
-        proxy_port=${3:-8123}
-        ssh -fN -D$proxy_port eat1-hcl0476.grid.linkedin.com
-        ssh_pid=`ps ax | grep "[s]sh -fN -D$proxy_port" | awk '{print $1}'`
-        jconsole -J-DsocksProxyHost=localhost -J-DsocksProxyPort=$proxy_port ${host}:${port}
-        kill $ssh_pid
-}
-
 # Local zshrc file to this machine
 [[ -f "$HOME/.zshrc-local" ]] && source $HOME/.zshrc-local
