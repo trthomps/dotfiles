@@ -4,6 +4,12 @@
   title_inactive_fg_color = "#888888"
   title_inactive_bg_color = "#222222"
 [keybindings]
+  rotate_cw = <Primary><Shift>r
+  next_tab = <Primary><Alt>Right
+  split_horiz = <Primary><Shift>underscore
+  prev_tab = <Primary><Alt>Left
+  rotate_ccw = <Primary><Shift><Alt>r
+  split_vert = <Primary><Shift>bar
 [profiles]
   [[default]]
     scrollbar_position = hidden
