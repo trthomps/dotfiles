@@ -41,5 +41,11 @@ if exists('+colorcolumn')
 else
     au BufWinEnter * let w:m2=matchadd('ErrorMsg', '\%>80v.\+', -1)
 endif
+au BufRead,BufNewFile jquery.*.js set ft=javascript syntax=jquery
 
 set term=screen-256color
+set term=xterm-256color
+map <ESC>[8~    <End>
+map <ESC>[7~    <Home>
+imap <ESC>[8~    <End>  
+imap <ESC>[7~    <Home>

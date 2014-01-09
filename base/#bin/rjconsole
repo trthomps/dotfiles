@@ -7,7 +7,10 @@ proxy_port=${1:-8123}
 shift
 proxy_server=esv4-hcl261.grid.linkedin.com
 
-ssh -fN -D$proxy_port $proxy_server
 ssh_pid=`ps ax | grep "[s]sh -fN -D$proxy_port" | awk '{print $1}'`
+if [ -z $ssh_pid ]; then
+    ssh -fN -D$proxy_port $proxy_server
+    ssh_pid=`ps ax | grep "[s]sh -fN -D$proxy_port" | awk '{print $1}'`
+fi
 jconsole -J-DsocksProxyHost=localhost -J-DsocksProxyPort=$proxy_port ${host}:${port}
 kill $ssh_pid
