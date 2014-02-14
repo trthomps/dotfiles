@@ -14,6 +14,8 @@ set mouse=a
 set hidden
 set backspace=2
 set showcmd
+set listchars=eol:$,tab:>-,trail:~,extends:>,precedes:<
+set list
 
 "folding settings
 set foldmethod=indent   "fold based on indent

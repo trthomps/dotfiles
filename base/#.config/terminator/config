@@ -1,7 +1,8 @@
 [global_config]
-  enabled_plugins = CustomCommandsMenu, InactivityWatch, ActivityWatch, TerminalShot, APTURLHandler
-  title_transmit_bg_color = "#535d6c"
+  enabled_plugins = CustomCommandsMenu, InactivityWatch, ActivityWatch, TerminalShot
+  title_transmit_bg_color = "#4f5255"
   title_inactive_fg_color = "#888888"
+  dbus = True
   title_inactive_bg_color = "#222222"
 [keybindings]
   rotate_cw = <Primary><Shift>r
@@ -15,11 +16,12 @@
     scrollbar_position = hidden
     palette = "#073642:#dc322f:#859900:#b58900:#268bd2:#d33682:#2aa198:#eee8d5:#002b36:#cb4b16:#586e75:#657b83:#839496:#6c71c4:#93a1a1:#fdf6e3"
     visible_bell = True
-    background_darkness = 0.92
+    background_darkness = 0.91
+    urgent_bell = True
     background_image = None
     cursor_color = "#6ef151"
-    foreground_color = "#6c6963"
-    background_color = "#1c1c1c"
+    foreground_color = "#839496"
+    background_color = "#002b36"
     scrollback_infinite = True
 [layouts]
   [[default]]
