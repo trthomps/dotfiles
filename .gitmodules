@@ -19,3 +19,6 @@
 [submodule "vim/bundle/ctrlp"]
 	path = "base/.vim/bundle/ctrlp"
 	url = https://github.com/kien/ctrlp.vim.git
+[submodule "awesome/revelation"]
+    path = "base/#.config/awesome/revelation"
+    url = https://bioe007@github.com/bioe007/awesome-revelation.git
