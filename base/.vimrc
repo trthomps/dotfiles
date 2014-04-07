@@ -1,3 +1,7 @@
+execute pathogen#infect()
+filetype plugin indent on
+
+syntax on
 set nowrap
 set number
 set autoindent
@@ -16,17 +20,22 @@ set backspace=2
 set showcmd
 set listchars=eol:$,tab:>-,trail:~,extends:>,precedes:<
 set list
+set foldmethod=indent
+set foldnestmax=10
+set nofoldenable
+set foldlevel=1
+set term=screen-256color
+set clipboard=unnamedplus
 
-"folding settings
-set foldmethod=indent   "fold based on indent
-set foldnestmax=10      "deepest fold is 10 levels
-set nofoldenable        "dont fold by default
-set foldlevel=1         "this is just what i use
+if exists('+colorcolumn')
+    set colorcolumn=80
+endif
 
-execute pathogen#infect()
-filetype plugin indent on
+map <ESC>[8~    <End>
+map <ESC>[7~    <Home>
+imap <ESC>[8~    <End>
+imap <ESC>[7~    <Home>
 
-syntax on
 set background=dark
 let g:solarized_termcolors = 256
 let g:solarized_visibility = "high"
@@ -37,17 +46,10 @@ let g:Powerline_colorscheme='solarized256_dark'
 
 let mapleader = ","
 map <Leader>n :NERDTreeToggle<CR>
+nmap <leader>v :tabedit $MYVIMRC<CR>
 
-if exists('+colorcolumn')
-    set colorcolumn=80
-else
-    au BufWinEnter * let w:m2=matchadd('ErrorMsg', '\%>80v.\+', -1)
-endif
 au BufRead,BufNewFile jquery.*.js set ft=javascript syntax=jquery
 
-set term=screen-256color
-set term=xterm-256color
-map <ESC>[8~    <End>
-map <ESC>[7~    <Home>
-imap <ESC>[8~    <End>  
-imap <ESC>[7~    <Home>
+if has("autocmd")
+    autocmd bufwritepost .vimrc source $MYVIMRC
+endif

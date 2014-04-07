@@ -8,7 +8,7 @@ export LANG=en_US.utf-8
 export PATH=$HOME/bin:$PATH
 
 # General Plugins
-plugins=(git git-extras github python git_remote_branch pip urltools vi-mode web-search colored-man colorize)
+plugins=(git git-extras github python git_remote_branch pip urltools web-search colored-man colorize)
 
 # OS Specific
 case "$(uname)" in
