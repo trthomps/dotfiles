@@ -37,6 +37,7 @@ let g:Powerline_colorscheme='solarized256_dark'
 
 let mapleader = ","
 map <Leader>n :NERDTreeToggle<CR>
+map <Leader>q :QTInit<CR>
 
 if exists('+colorcolumn')
     set colorcolumn=80
