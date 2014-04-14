@@ -9,7 +9,7 @@ export PATH=$HOME/bin:$PATH
 export EDITOR=vim
 
 # General Plugins
-plugins=(git git-extras github python git_remote_branch pip urltools vi-mode web-search colored-man colorize)
+plugins=(git git-extras github python git_remote_branch pip urltools web-search colored-man colorize)
 
 # OS Specific
 case "$(uname)" in
