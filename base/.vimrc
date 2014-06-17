@@ -54,3 +54,7 @@ au BufRead,BufNewFile jquery.*.js set ft=javascript syntax=jquery
 if has("autocmd")
     autocmd bufwritepost .vimrc source $MYVIMRC
 endif
+
+augroup filetypedetect
+    autocmd BufNewFile,BufRead *.genshi setfiletype textgenshi
+augroup END
