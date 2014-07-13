@@ -61,7 +61,6 @@ function dfup() {
     if [ $? -eq 0 ]; then
         echo "### Updates found, pulling from github"
         git pull --recurse-submodules
-        git submodule update --recursive
     fi
 
     # If we have changes to commit, commit them then push them
@@ -117,6 +116,7 @@ function dfup() {
     
     echo "### Checking for submodule updates..."
     git submodule update --init --recursive
+    git submodule update --recursive
     echo "### done"
     
     echo `date +%s` > $DF_DIR/.lastup
