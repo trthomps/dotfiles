@@ -1,4 +1,4 @@
-#!/bin/zsh
+#!/usr/bin/env zsh
 [[ -z "$DF_DIR" ]] && DF_DIR=$HOME/.dotfiles
 [[ -z "$DF_TARGET" ]] && DF_TARGET=$HOME
 [[ -z "$DF_UPCHECKTIME" ]] && DF_UPCHECKTIME=604800 # 1 week default
