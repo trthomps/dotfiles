@@ -60,7 +60,8 @@ function dfup() {
     git log | grep behind >/dev/null
     if [ $? -eq 0 ]; then
         echo "### Updates found, pulling from github"
-        git pull
+        git pull --recurse-submodules
+        git submodule update --recursive
     fi
 
     # If we have changes to commit, commit them then push them
